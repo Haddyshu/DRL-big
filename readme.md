@@ -1,5 +1,6 @@
 # 训练游戏
 FlapplyBird
+
 Paddle
 # 训练环境
 [1]使用[PLE](https://github.com/ntasfi/PyGame-Learning-Environment)作为训练的环境,只需要从链接clone下该仓库然后安装就可以使用，里面集成了gym-based的强化学习环境。

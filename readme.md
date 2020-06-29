@@ -19,13 +19,13 @@ Paddle
 
 使用起来简单方便，代码和环境解耦，可以实现即插即用。本次代码使用的DQN代码即使在强化学习七日打卡营上面使用的DQN代码，稍作修改即可在本次实验上面使用。
 
-#Result
+# Result
 最终小鸟能够正常的躲避障碍，能够达到2k+的分数
 
-##[FlappleBird]
+## [FlappleBird]
 ![result-bird](./files/bird.gif)
 
-##[Paddle]
+## [Paddle]
 ![result-bird](./files/paddle.gif)
 # how to run
 安装好ple后,使用如下命令安装项目依赖

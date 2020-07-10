@@ -16,16 +16,16 @@
 
 import gym
 import numpy as np
-
+import os
 from parl.utils import logger  # 日志打印工具
 
 
-from big.Paddle.algorithm import DQN  # from parl.algorithms import DQN  # parl >= 1.3.1
-from big.Paddle.agent import Agent
-from big.Paddle.model import Model
+from Paddle.algorithm import DQN  # from parl.algorithms import DQN  # parl >= 1.3.1
+from Paddle.agent import Agent
+from Paddle.model import Model
 
-from big.Paddle.replay_memory import ReplayMemory
-from big.Paddle.paddle_l import Paddle
+from Paddle.replay_memory import ReplayMemory
+from Paddle.paddle_l import Paddle
 
 LEARN_FREQ = 5  # 训练频率，不需要每一个step都learn，攒一些新增经验后再learn，提高效率
 MEMORY_SIZE = 20000  # replay memory的大小，越大越占用内存
@@ -99,8 +99,9 @@ def main():
         e_greed_decrement=1e-6)  # 随着训练逐步收敛，探索的程度慢慢降低
 
     # 加载模型
-    # save_path = './dqn_model.ckpt'
-    # agent.restore(save_path)
+    if os.path.exists('dqn_model.ckpt'):
+        save_path = 'dqn_model.ckpt'
+        agent.restore(save_path)
 
     # 先往经验池里存一些数据，避免最开始训练的时候样本丰富度不够
     while len(rpm) < MEMORY_WARMUP_SIZE:
@@ -114,6 +115,8 @@ def main():
         # train part
         for i in range(0, 50):
             total_reward = run_episode(env, agent, rpm)
+            logger.info('episode:{}    e_greed:{}   run reward:{}'.format(
+                episode, agent.e_greed, total_reward))
             episode += 1
 
         # test part
